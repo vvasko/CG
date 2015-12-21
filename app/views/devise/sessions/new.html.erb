@@ -2,7 +2,9 @@
 
 
 <%= form_for(resource, as: resource_name, html: {:class => 'form-signin'}, url: session_path(resource_name))  do |f| %>
+      <%= render "devise/shared/links" %>
       <h2 class="form-signin-heading">Please sign in</h2>
+
     <%= f.label :email,:class => 'sr-only' %><br />
     <%= f.email_field :email, autofocus: true, :class => 'form-control', :placeholder => "Email address" %>
 
@@ -17,7 +19,7 @@
   <div class="actions">
     <%= f.submit "Sign in", :class=> 'btn btn-lg btn-primary btn-block' %>
   </div>
-      <%= render "devise/shared/links" %>
+
 <% end %>
 
 
