@@ -6,19 +6,12 @@
         <small><%= action_name %></small>
     <% end %>
     <div class="btn-group right" role="group">
-      <%= link_to 'Add', {action: :new} %>
+      <%=  link_to 'today', events_path(filter_date: Date.today) %>
+      <%=  link_to 'tomorrow', events_path(filter_date: Date.tomorrow) %>
+      <%=  link_to 'after tomorrow', events_path(filter_date: (Date.today+2.days)) %>
+      <%=  link_to 'all time', events_path %>
     </div>
   </h1>
-</div>
-
-<div class="date filter">
-  <div class="panel-body">
-    <div class="col-md-2"><%=  link_to 'today', events_path(filter_date: Date.today) %></div>
-    <div class="col-md-2"><%=  link_to 'tomorrow', events_path(filter_date: Date.tomorrow) %></div>
-    <div class="col-md-2"><%=  link_to 'after tomorrow', events_path(filter_date: (Date.today+2.days)) %></div>
-    <div class="col-md-2"><%=  link_to 'all time', events_path %></div>
-  </div>
-
 </div>
 
 <div class="body_panel panel-default">
@@ -39,7 +32,9 @@
             <h4>Description:</h4>
             <div><%= event.description %></div>
             <br>
-            <p>Date: <%= event.duration %></p>
+            <p>Start date: <%= event.start_date %></p>
+            <br>
+            <p>Start date: <%= event.final_date %></p>
             <br>
             <p>Location: <%= event.location %></p>
             <br>
