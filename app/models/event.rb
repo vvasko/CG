@@ -6,6 +6,7 @@ class Event < ActiveRecord::Base
   belongs_to :enterprise
   validates :name, :description, :start_date, :final_date, presence: true, allow_blank: false
 
-  scope :date_filter, ->(filter_date) { where("start_date <= ?", filter_date).where("find_date >= ?", filter_date)}
+
+  scope :date_filter, ->(filter_date) { where("start_date <= ?", filter_date).where("final_date >= ?", filter_date)}
 
 end
