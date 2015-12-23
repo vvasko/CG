@@ -22,7 +22,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.model 'User' do
+  config.model User do
     visible false
   end
 
@@ -45,7 +45,7 @@ RailsAdmin.config do |config|
     end
   end
 
-  config.model 'Event_time' do
+  config.model EventTime do
     visible false
   end
 
