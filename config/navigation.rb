@@ -4,13 +4,15 @@ SimpleNavigation::Configuration.run do |navigation|
 
     navigation.autogenerate_item_ids = false
 
-    navigation.selected_class = 'current'
+    navigation.selected_class = 'active'
     navigation.items do |primary|
       primary.item :menu_home, 'Home', root_path
-      primary.item :menu_about_us, 'Enterprises', enterprises_path
-      primary.item :menu_blog, 'Events', promos_path
-      primary.item :menu_contact_us, 'Promos', promos_path
-      primary.dom_class = 'nav'
+      primary.item :menu_enterprises, 'Enterprises', enterprises_path
+      primary.item :menu_events, 'Promos', promos_path
+      # primary.item :menu_login, 'Sign In', new_user_session_path
+      primary.item :menu_login, 'Sign In', new_user_session_path , unless: proc { user_signed_in? }
+      primary.item :menu_logout, 'Sign Out', destroy_user_session_path, method: :delete, if: proc { user_signed_in? }
+      primary.dom_class = 'nav navbar-nav'
     end
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.
