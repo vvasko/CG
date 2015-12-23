@@ -2,7 +2,6 @@
 # Configures your navigation
 SimpleNavigation::Configuration.run do |navigation|
 
-  navigation.renderer = SimpleNavigation::Renderer::Bootstrap
   navigation.autogenerate_item_ids = false
 
   navigation.selected_class = 'current'
