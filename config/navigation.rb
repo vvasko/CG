@@ -2,14 +2,15 @@
 # Configures your navigation
 SimpleNavigation::Configuration.run do |navigation|
 
-  navigation.autogenerate_item_ids = false
+    navigation.autogenerate_item_ids = false
 
-  navigation.selected_class = 'current'
+    navigation.selected_class = 'current'
     navigation.items do |primary|
       primary.item :menu_home, 'Home', root_path
       primary.item :menu_about_us, 'Enterprises', enterprises_path
       primary.item :menu_blog, 'Events', promos_path
       primary.item :menu_contact_us, 'Promos', promos_path
+      primary.dom_class = 'nav'
     end
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.
