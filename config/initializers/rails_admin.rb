@@ -1,6 +1,6 @@
 RailsAdmin.config do |config|
   config.main_app_name = Proc.new {
-    ["CityGuide Admin", "(#{Time.zone.now.to_s(:time)})"]
+    ["CityGuide Admin",'']
   }
 
   ### Popular gems integration
