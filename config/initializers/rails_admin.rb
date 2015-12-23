@@ -1,4 +1,7 @@
 RailsAdmin.config do |config|
+  config.main_app_name = Proc.new {
+    ["CityGuide Admin", "(#{Time.zone.now.to_s(:time)})"]
+  }
 
   ### Popular gems integration
 
@@ -6,7 +9,7 @@ RailsAdmin.config do |config|
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
   # end
-  # config.current_user_method(&:current_user)
+   config.current_user_method(&:current_user)
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -23,8 +26,23 @@ RailsAdmin.config do |config|
     visible false
   end
 
-  config.model 'Enterprise' do
+  config.model Enterprise do
+    edit do
+      include_all_fields
+       configure :user do
+         visible false
+       end
 
+
+      field :user_id, :hidden do
+        visible true
+        default_value do
+          bindings[:view].current_user.id
+        end
+      end
+
+
+    end
   end
 
   config.actions do
