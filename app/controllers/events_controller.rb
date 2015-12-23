@@ -3,7 +3,11 @@ class EventsController < ApplicationController
   before_filter :find_item, only: [:edit, :update, :destroy, :show]
 
   def index
-    @events = Event.all
+    if params[:filter_date]
+    @events= Event.date_filter(params[:filter_date])
+    else
+      @events = Event.all
+    end
   end
 
   def new
@@ -16,7 +20,7 @@ class EventsController < ApplicationController
   end
 
   def item_params
-    params.require(:event).permit(:id, :name, :image, :remove_image, :price, :description, :location,:date, :business_id, :event_category_id)
+    params.require(:event).permit(:id, :name, :image, :remove_image, :price, :description, :location,:date, :start_date, :end_date, :business_id, :event_category_id)
   end
 
   def edit

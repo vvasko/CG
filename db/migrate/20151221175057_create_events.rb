@@ -7,10 +7,10 @@ class CreateEvents < ActiveRecord::Migration
       t.string :location, array:  true
       t.time :time, array: true
       t.string :image
-      t.daterange :date
+      t.daterange :duration
       t.float :price
       t.integer :enterprise_id
-      t.integer :event_category_id, default: 0
+      t.integer :event_category_id
       t.timestamps null: false
     end
   end

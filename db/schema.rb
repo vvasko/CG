@@ -31,15 +31,15 @@ ActiveRecord::Schema.define(version: 20151221175057) do
   create_table "events", force: :cascade do |t|
     t.string    "name"
     t.text      "description"
-    t.string    "location",                                   array: true
-    t.time      "time",                                       array: true
+    t.string    "location",                       array: true
+    t.time      "time",                           array: true
     t.string    "image"
-    t.daterange "date"
+    t.daterange "duration"
     t.float     "price"
     t.integer   "enterprise_id"
-    t.integer   "event_category_id", default: 0
-    t.datetime  "created_at",                    null: false
-    t.datetime  "updated_at",                    null: false
+    t.integer   "event_category_id"
+    t.datetime  "created_at",        null: false
+    t.datetime  "updated_at",        null: false
   end
 
   create_table "users", force: :cascade do |t|

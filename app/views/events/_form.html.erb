@@ -7,7 +7,7 @@
     </div>
   </div>
 
-      <% if @banner.image? %>
+      <% if @event.image? %>
       <div class='field form-group'>
         <div class='col-md-2 control-label'></div>
 
@@ -19,7 +19,7 @@
       <div class="field form-group">
         <div class='col-md-2 control-label'></div>
         <div class='col-sm-10'>
-          <%= image_tag(@banner.image_url, size: '380', class: "img-thumbnail")%>
+          <%= image_tag(@event.image_url, size: '380', class: "img-thumbnail")%>
         </div>
       </div>
 
@@ -29,7 +29,8 @@
     <%= form_field_text(f, :name) %>
     <div class="row field form-group">
       <%= form_field_row_numeric(f, :price) %>
-      <%= form_field_row_date(f, :date) %>
+      <%= form_field_row_date(f, :start_date) %>
+      <%= form_field_row_date(f, :end_date) %>
       <%= form_field_row_text(f, :location) %>
     </div>
     <div class='field form-group'>
