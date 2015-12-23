@@ -45,6 +45,10 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model 'Event_time' do
+    visible false
+  end
+
   config.actions do
     dashboard do
       statistics false
