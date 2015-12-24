@@ -1,7 +1,12 @@
 Rails.application.routes.draw do
-  get 'admin', to: redirect('admin/enterprise')
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticate do
+    get 'admin', to: redirect('admin/enterprise')
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin' 
+  end
+
+
   devise_for :users
+  root 'promos#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -15,7 +20,7 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-     resources :enterprises,:events
+     resources :enterprises, :events, :promos
 
   # Example resource route with options:
   #   resources :products do

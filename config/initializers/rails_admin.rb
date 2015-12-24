@@ -1,7 +1,9 @@
 RailsAdmin.config do |config|
   config.main_app_name = Proc.new {
-    ["CityGuide Admin", "(#{Time.zone.now.to_s(:time)})"]
+    ["CityGuide Admin",'']
   }
+
+  # config.current_user_method(&:current_admin)
 
   ### Popular gems integration
 
@@ -9,7 +11,7 @@ RailsAdmin.config do |config|
   # config.authenticate_with do
   #   warden.authenticate! scope: :user
   # end
-   config.current_user_method(&:current_user)
+    config.current_user_method(&:current_user)
 
   ## == Cancan ==
   # config.authorize_with :cancan
@@ -22,7 +24,7 @@ RailsAdmin.config do |config|
 
   ### More at https://github.com/sferik/rails_admin/wiki/Base-configuration
 
-  config.model 'User' do
+  config.model User do
     visible false
   end
 
@@ -43,6 +45,10 @@ RailsAdmin.config do |config|
 
 
     end
+  end
+
+  config.model EventTime do
+    visible false
   end
 
   config.actions do

@@ -3,6 +3,10 @@ class EnterprisesController < ApplicationController
 
   end
 
+  def show
+    
+  end
+
   # def create
   #   @enterprise = Enterprise.new(params[:enterprise])
   #   @enterprise.user_id = current_user.id

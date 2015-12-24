@@ -27,50 +27,6 @@
   margin-bottom: 80px;
 }
 
-.form-signin {
-  max-width: 380px;
-  padding: 15px 35px 45px;
-  margin: 0 auto;
-  background-color: #fff;
-  border: 1px solid rgba(0,0,0,0.1);
-
-  .form-signin-heading,
-  .checkbox {
-    margin-bottom: 30px;
-  }
-
-  .checkbox {
-    font-weight: normal;
-  }
-
-  .form-control {
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-
-    &:focus {
-      z-index: 2;
-    }
-  }
-
-  input[type="text"] {
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-  }
-
-  input[type="password"] {
-
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-  }
-
-  .actions {
-    margin-top: 20px;
-  }
-}
-
 .container{
   @extend .container;
 }
@@ -125,4 +81,70 @@ form {
   @extend .page-header;
   margin-left: 10%;
   margin-right: 10%;
+}
+
+.form-signin {
+  max-width: 380px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+
+  .form-signin-heading,
+  .checkbox {
+    margin-bottom: 30px;
+  }
+
+  .checkbox {
+    font-weight: normal;
+
+  }
+
+
+  .form-control {
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+
+    &:focus {
+      z-index: 2;
+    }
+  }
+
+  input[type="text"] {
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+
+  input[type="password"] {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  input[type = submit] {
+    @extend .btn-lg;
+    @extend .btn-primary;
+  }
+
+  input[type="checkbox"] {
+    @extend .checkbox;
+    margin-left: -14px;
+    margin-top: 4px;
+
+  }
+
+  .actions {
+    margin-top: 20px;
+  }
+}
+
+
+.navbar-nav > li:last-of-type {
+  float: right
+}
+
+.navbar-nav {
+  width: 100%
 }

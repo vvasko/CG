@@ -1,36 +1,25 @@
 class Event < ActiveRecord::Base
 
-  attr_accessor :start_date, :end_date
-  before_validation :create_daterange
-
   mount_uploader :image, EventImageUploader
    # belongs_to :event_category
-   belongs_to :enterprise
-  validates :name, :description, :duration, presence: true, allow_blank: false
+  has_many :event_times
+  belongs_to :enterprise
+  validates :name, :description, :start_date, :final_date, presence: true, allow_blank: false
+  scope :date_filter, ->(filter_date) { where("start_date <= ?", filter_date).where("final_date >= ?", filter_date)}
 
-  scope :date_filter, ->(filter_date) { where("duration @> ?::date", filter_date)}
+  validate :final_date_must_be_after_start_date
+  validate :date_must_be_in_future, on: :create
 
-  def start_date
-    (duration.nil?)? @start_date : duration.first
+  def final_date_must_be_after_start_date
+    if start_date > final_date
+      errors.add(:final_date, 'should be AFTER start date')
+    end
   end
 
-  def end_date
-    (duration.nil?)? @end_date : duration.last
-  end
-
-  def start_date=(value)
-    @start_date = value
-  end
-
-  def end_date=(value)
-    @end_date = value
-  end
-
-  private
-  def create_daterange
-
-    self.duration = @start_date..@end_date
-
+  def date_must_be_in_future
+    if start_date < Date.today
+      errors.add(:start_date, "can't be in the past")
+    end
   end
 
 end
