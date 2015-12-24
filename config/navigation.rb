@@ -6,13 +6,13 @@ SimpleNavigation::Configuration.run do |navigation|
 
     navigation.selected_class = 'active'
     navigation.items do |primary|
-      primary.item :menu_home, 'Home', root_path
-      primary.item :menu_enterprises, 'Enterprises', enterprises_path
-      primary.item :menu_events, 'Promos', promos_path
-      # primary.item :menu_login, 'Sign In', new_user_session_path
-      primary.item :menu_login, 'Sign In', new_user_session_path , unless: proc { user_signed_in? }
-      primary.item :menu_logout, 'Sign Out', destroy_user_session_path, method: :delete, if: proc { user_signed_in? }
       primary.dom_class = 'nav navbar-nav'
+      primary.item :menu_home, 'Home', root_path
+      primary.item :menu_enterprises, 'Enterprises', enterprises_path, highlights_on: :subpath
+      primary.item :menu_events, 'Promos', promos_path,  highlights_on: :subpath
+      primary.item :menu_login, 'Sign In',  new_user_session_path, unless: proc { user_signed_in? } 
+      primary.item :menu_logout, 'Sign Out', destroy_user_session_path, method: :delete,  if: proc { user_signed_in? }
+
     end
   # Specify a custom renderer if needed.
   # The default renderer is SimpleNavigation::Renderer::List which renders HTML lists.
