@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  get 'admin', to: redirect('admin/enterprise')
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+  authenticate do
+    get 'admin', to: redirect('admin/enterprise')
+    mount RailsAdmin::Engine => '/admin', as: 'rails_admin' 
+  end
+
+
   devise_for :users
   root 'promos#index'
   # The priority is based upon order of creation: first created -> highest priority.
