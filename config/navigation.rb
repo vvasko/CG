@@ -10,8 +10,8 @@ SimpleNavigation::Configuration.run do |navigation|
       primary.item :menu_home, 'Home', root_path
       primary.item :menu_enterprises, 'Enterprises', enterprises_path, highlights_on: :subpath
       primary.item :menu_events, 'Promos', promos_path,  highlights_on: :subpath
-      primary.item :menu_login, 'Sign In',  new_user_session_path, unless: proc { user_signed_in? } 
-      primary.item :menu_logout, 'Sign Out', destroy_user_session_path, method: :delete,  if: proc { user_signed_in? }
+      primary.item :menu_login, 'Enterprise Admin',  new_user_session_path, unless: proc { user_signed_in? }
+      primary.item :menu_logout, 'Enterprise Admin', admin_path,  if: proc { user_signed_in? }
 
     end
   # Specify a custom renderer if needed.
