@@ -30,6 +30,10 @@ gem 'bootstrap-sass'
 
 gem 'rails_admin'
 
+gem 'simple-navigation'
+gem 'simple-navigation-bootstrap'
+
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
