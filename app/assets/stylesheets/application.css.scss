@@ -154,3 +154,17 @@ form {
   vertical-align: middle;
   float: none;
 }
+
+.img-responsive {
+  @extend .img-responsive;
+  float: left;
+  padding: 0px 25px 5px 5px;
+}
+
+.enterprisespan8{
+  text-align: justify;
+}
+
+.rmore {
+  padding-top: 5px;
+}
