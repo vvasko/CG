@@ -1,0 +1,15 @@
+<%#= item.inspect %>
+<div class="row">
+    <div class="col-md-4">
+        <%= link_to image_tag(item.enterprise.picture_url, size: '250', class: "img-thumbnail"), item.enterprise %>
+    </div>
+    <div class="col-md-8">
+      <h3><%= item.name %></h3>
+      <p><%= link_to item.enterprise.name, item.enterprise %></p>
+      <p class="vacancy-actual-date">actual: <%= item.open_date %> - <%= item.close_date %></p>
+      <p>phone: <%= item.enterprise.phone %></p>
+      <p>email: <%= item.enterprise.email %></p>
+      <div class="vacancy-description"><%= item.description %></div>
+    </div>
+</div>
+
