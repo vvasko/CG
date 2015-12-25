@@ -14,6 +14,7 @@
 !/log/.keep
 /tmp
 /.idea/*
+/db/schema.rb
 /config/database.yml
 /public/uploads
 Gemfile.lock
