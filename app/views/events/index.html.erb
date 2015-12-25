@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1><%= controller_name.humanize %>
-    <% if @events.empty? %>
+    <% if @events.blank? %>
         <small> None to show yet</small>
     <% end %>
     <div class="btn-group right" role="group">
@@ -36,32 +36,31 @@
 
               <li class="list-group-item">
                 <h4><%= link_to "#{event.enterprise.name}", enterprise_path(event.enterprise_id) %></h4></li>
-              <li class="list-group-item panel panel-default">
-                <div class="panel-heading"><h4>Description:</h4></div>
-                <div class="panel-body"><%= event.description %></div>
+              <li class="list-group-item">
+               <h4>Description:</h4>
+                <div class="well"><%= truncate(event.description,length: 500, separator: '') %></div>
               </li>
 
-
+              <% unless event.location.blank?  %>
               <li class="list-group-item"><p>Location: <%= event.location %></p></li>
-
-
+              <% end %>
+              <% unless event.price.blank?  %>
               <li class="list-group-item"><p>Price: <%= event.price %> bucks</p></li>
+              <% end %>
 
+              <% unless event.event_times.empty?  %>
               <li class="list-group-item">
 
                 <p> Times:</p>
 
-
                   <div class="well">
-                    <% event.event_times.order(:time).each do |event_time| %>
+                    <% event.event_times.each do |event_time| %>
                         <%= show_time(event_time)%>
                     <% end %>
                     <br>
                   </div>
-
-
               </li>
-
+              <% end %>
 
             </div>
           </div>

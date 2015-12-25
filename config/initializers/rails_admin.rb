@@ -29,13 +29,9 @@ RailsAdmin.config do |config|
   end
 
   config.model Enterprise do
+
     edit do
       include_all_fields
-       configure :user do
-         visible false
-       end
-
-
       field :user_id, :hidden do
         visible true
         default_value do
@@ -43,8 +39,12 @@ RailsAdmin.config do |config|
         end
       end
 
-
+       configure :user do
+         visible false
+       end
     end
+
+
   end
 
   config.model EventTime do

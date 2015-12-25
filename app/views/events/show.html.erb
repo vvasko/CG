@@ -28,12 +28,12 @@
                 <div class="panel-body"><%= @event.description %></div>
               </li>
 
-
+              <% unless @event.location.blank?  %>
               <li class="list-group-item"><p>Location: <%= @event.location %></p></li>
-
-
+              <%end%>
+              <% unless @event.price.blank?  %>
               <li class="list-group-item"><p>Price: <%= @event.price %> bucks</p></li>
-
+              <%end%>
               <li class="list-group-item">
                 <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseTime" aria-expanded="false" aria-controls="collapseTime">
                   Show event times

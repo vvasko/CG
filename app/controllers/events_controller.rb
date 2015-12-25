@@ -4,11 +4,11 @@ class EventsController < ApplicationController
 
   def index
     if params[:filter_start_date]
-    @events= Event.include_connected_stuff.start_date_filter(params[:filter_start_date])
+    @events= Event.include_connected_stuff.start_date_filter(params[:filter_start_date]).order_by_post_date
     elsif params[:filter_start_date] && [:filter_end_date]
-      @events= Event.include_connected_stuff.start_date_filter(params[:filter_start_date]).end_date_filter(params[:filter_end_date])
+      @events= Event.include_connected_stuff.start_date_filter(params[:filter_start_date]).end_date_filter(params[:filter_end_date]).order_by_post_date
     else
-      @events = Event.include_connected_stuff.actual
+      @events = Event.include_connected_stuff.actual.order_by_post_date
     end
   end
 
