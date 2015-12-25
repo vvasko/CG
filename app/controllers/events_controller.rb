@@ -3,10 +3,12 @@ class EventsController < ApplicationController
   before_filter :find_item, only: [:edit, :update, :destroy, :show]
 
   def index
-    if params[:filter_date]
-    @events= Event.date_filter(params[:filter_date])
+    if params[:filter_start_date]
+    @events= Event.include_connected_stuff.start_date_filter(params[:filter_start_date])
+    elsif params[:filter_start_date] && [:filter_end_date]
+      @events= Event.include_connected_stuff.start_date_filter(params[:filter_start_date]).end_date_filter(params[:filter_end_date])
     else
-      @events = Event.all
+      @events = Event.include_connected_stuff.actual
     end
   end
 

@@ -2,45 +2,68 @@
   <h1><%= controller_name.humanize %>
     <% if @events.empty? %>
         <small> None to show yet</small>
-    <% else %>
-        <small><%= action_name %></small>
     <% end %>
     <div class="btn-group right" role="group">
-      <%=  link_to 'today', events_path(filter_date: Date.today) %>
-      <%=  link_to 'tomorrow', events_path(filter_date: Date.tomorrow) %>
-      <%=  link_to 'after tomorrow', events_path(filter_date: (Date.today+2.days)) %>
-      <%=  link_to 'all time', events_path %>
+      <%= link_to 'today', events_path(filter_start_date: Date.today) %>
+      <%= link_to 'tomorrow', events_path(filter_start_date: (Date.today+1.day)) %>
+      <%= link_to 'all week', events_path(filter_start_date: Date.today, filter_end_date: (Date.today+7.days)) %>
+      <%= link_to 'all time', events_path %>
     </div>
   </h1>
 </div>
 
+
 <div class="body_panel panel-default">
   <div class="panel-body">
-
-
     <% @events.each do |event| %>
-        <div class="col-md-12">
-          <div class="col-md-4">
+        <div class="col-md-4">
+          <div class="panel panel-default text-center">
 
-            <p><%= image_tag(event.image_url, size: '250', class: "img-thumbnail") %> </p>
+            <div class="panel-body"><%= image_tag(event.image_url, size: '250', class: "img-thumbnail") %> </div>
 
+            <div class="panel-footer"><p>Duration: <%= event.duration %></p></div>
           </div>
-
-          <div class="col-md-6">
-            <h2><%= link_to "#{event.name}", event_path(event.id) %></h2>
-            <br>
-            <h4>Description:</h4>
-            <div><%= event.description %></div>
-            <br>
-            <p>Start date: <%= event.start_date %></p>
-            <br>
-            <p>Start date: <%= event.final_date %></p>
-            <br>
-            <p>Location: <%= event.location %></p>
-            <br>
-            <p>Price: <%= event.price %> bucks</p>
+        </div>
 
 
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h2><%= link_to "#{event.name}", event_path(event.id) %></h2>
+
+            </div>
+            <div class="panel-body list-group">
+
+              <li class="list-group-item">
+                <h4><%= link_to "#{event.enterprise.name}", enterprise_path(event.enterprise_id) %></h4></li>
+              <li class="list-group-item panel panel-default">
+                <div class="panel-heading"><h4>Description:</h4></div>
+                <div class="panel-body"><%= event.description %></div>
+              </li>
+
+
+              <li class="list-group-item"><p>Location: <%= event.location %></p></li>
+
+
+              <li class="list-group-item"><p>Price: <%= event.price %> bucks</p></li>
+
+              <li class="list-group-item">
+
+                <p> Times:</p>
+
+
+                  <div class="well">
+                    <% event.event_times.order(:time).each do |event_time| %>
+                        <%= show_time(event_time)%>
+                    <% end %>
+                    <br>
+                  </div>
+
+
+              </li>
+
+
+            </div>
           </div>
         </div>
     <% end %>
