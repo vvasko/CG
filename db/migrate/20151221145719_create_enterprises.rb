@@ -8,7 +8,7 @@ class CreateEnterprises < ActiveRecord::Migration
       t.string :phone
       t.string :email
       t.string :picture
-      t.string :description
+      t.text :description
       t.timestamps null: false
     end
   end
