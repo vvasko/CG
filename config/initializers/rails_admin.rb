@@ -28,6 +28,10 @@ RailsAdmin.config do |config|
     visible false
   end
 
+  config.model Currency do
+    visible false
+  end
+
   config.model Enterprise do
 
     edit do
