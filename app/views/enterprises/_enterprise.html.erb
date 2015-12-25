@@ -1,0 +1,19 @@
+<article class="enterprisespan8">
+  <h2>
+    <%= link_to enterprise.name, enterprise_path(enterprise.id) %>
+  </h2>
+  <hr>
+    <%= link_to image_tag(enterprise.picture_url, size: '200', class: "img-responsive",) %>
+  <p>
+    <span class="glyphicon glyphicon-home"></span> <%= enterprise.address %>
+  </p>
+  <p><span class="glyphicon glyphicon-phone-alt"></span> <%= enterprise.phone %></p>
+  <%=  truncate(enterprise.description, :length => 650)%>
+</article>
+<div class="rmore">
+  <%= link_to  enterprise_path(enterprise.id), { :class=>"btn btn-primary", :role=>"button" } do %>
+      Read More <span class="glyphicon glyphicon-chevron-right"></span>
+  <% end %>
+</div>
+<hr>
+<br/>
