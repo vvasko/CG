@@ -1,1 +1,59 @@
-<%= image_tag(@event.image_url, size: '500', class: "img-thumbnail") %>
+<div class="body_panel panel-default">
+  <div class="panel-body">
+  
+        <div class="col-md-4">
+          <div class="panel panel-default text-center">
+
+            <div class="panel-body"><%= image_tag(@event.image_url, size: '250', class: "img-thumbnail") %> </div>
+
+            <div class="panel-footer vert_align_center">
+              <br>
+              <p>Duration: <%= @event.duration %></p></div>
+          </div>
+        </div>
+
+
+        <div class="col-md-8">
+          <div class="panel panel-default">
+            <div class="panel-heading text-center">
+              <h2><%= @event.name %></h2>
+
+            </div>
+            <div class="panel-body list-group">
+
+              <li class="list-group-item">
+                <h4><%= link_to "#{@event.enterprise.name}", enterprise_path(@event.enterprise_id) %></h4></li>
+              <li class="list-group-item panel panel-default">
+                <div class="panel-heading"><h4>Description:</h4></div>
+                <div class="panel-body"><%= @event.description %></div>
+              </li>
+
+              <% unless @event.location.blank?  %>
+              <li class="list-group-item"><p>Location: <%= @event.location %></p></li>
+              <%end%>
+              <% unless @event.price.blank?  %>
+              <li class="list-group-item"><p>Price: <%= @event.price %> bucks</p></li>
+              <%end%>
+              <li class="list-group-item">
+                <a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseTime" aria-expanded="false" aria-controls="collapseTime">
+                  Show event times
+                </a>
+
+                <div class="collapse" id="collapseTime">
+                  <div class="well vert_align_center">
+                    <% @event.event_times.order(:time).each do |event_time| %>
+                        <%= show_time(event_time)%>
+                    <% end %>
+                    <br>
+                  </div>
+                </div>
+
+              </li>
+
+
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>

@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <small><%= action_name %></small>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-8">
+        <% unless @vacancies.blank? %>
+            <% @vacancies.each do |vacancy| %>
+                <%= render "item", {item: vacancy} %>
+            <% end %>
+        <% else %>
+            <div>No vacancies yet</div>
+        <% end %>
+      </div>
+      <div class="col-md-4">
+        <% unless @categories.blank? %>
+            <div class="list-group">
+              <% @categories.each do |category| %>
+                  <%= link_to category.name, vacancies_path(:cat => category.id), class: "list-group-item" %>
+              <% end %>
+              <%= link_to 'All', vacancies_path, class: "list-group-item" %>
+            </div>
+        <% else %>
+            <div>Categories are empty</div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
