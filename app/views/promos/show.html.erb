@@ -1,0 +1,18 @@
+<div class="page-header">
+  <h1> Promo </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <div class="col-md-4">
+
+      <p><%= image_tag(@promo.image_url, size: '250', class: "img-thumbnail") %> </p>
+
+    </div>
+    <div><%= @promo.name %></div>
+    <div>Starts: <span><%= @promo.starts %></span> Ends: <span><%= @promo.ends %></span></div>
+    <div><%= %></div>
+    <div>Carried by: <%= link_to @promo.enterprise.name, enterprise_path(@promo.enterprise.id) %></div>
+    <div>Description: <%= @promo.description %></div>
+  </div>
+</div>
