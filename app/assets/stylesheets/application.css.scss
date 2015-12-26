@@ -16,6 +16,7 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "ajax_pagination";
 
 
 .gray_background {
@@ -167,4 +168,8 @@ form {
 
 .rmore {
   padding-top: 5px;
+}
+
+.pagination{
+  @extend .pagination;
 }

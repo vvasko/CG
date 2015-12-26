@@ -33,6 +33,11 @@ gem 'rails_admin'
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
 
+gem 'ajax_pagination'
+gem 'jquery-historyjs'
+
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

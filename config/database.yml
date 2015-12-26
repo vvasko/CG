@@ -23,14 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: development
-  username: 123
-  password: 1234
-  host: localhost
-  port: 5432
-  encoding: UTF8
-  pool: 5
-  timeout: 5000
+  database: cg2
+  username: postgres
+  password: root
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
