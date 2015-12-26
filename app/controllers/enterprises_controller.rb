@@ -1,10 +1,15 @@
 class EnterprisesController < ApplicationController
   def index
-    @enterprises = Enterprise.all.paginate(:page => params[:page])
+    if params[:search]
+      @enterprises = Enterprise.search(params[:search]).order("created_at DESC").paginate(:page => params[:page])
+    else
+      @enterprises = Enterprise.paginate(:page => params[:page]).order("created_at DESC")
+    end
+
   end
 
   def show
-    
+    @enterprise = Enterprise.find_by_id params[:id]
   end
 
   # def create

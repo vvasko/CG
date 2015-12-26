@@ -4,4 +4,8 @@ class Enterprise < ActiveRecord::Base
   has_many :vacancies
 
   self.per_page = 5
+
+  def self.search(query)
+    where("name like ?", "%#{query}%")
+  end
 end

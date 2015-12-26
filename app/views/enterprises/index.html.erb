@@ -4,9 +4,6 @@
       <% @enterprises.each do |enterprise| %>
           <%= render partial: 'enterprise', locals: {enterprise: enterprise} %>
       <% end %>
-
-      <%= render partial: 'pager' %>
-
     </div>
     <%= render partial: 'sidebar' %>
   </div>
