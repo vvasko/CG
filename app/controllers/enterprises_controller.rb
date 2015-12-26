@@ -9,7 +9,7 @@ class EnterprisesController < ApplicationController
   end
 
   def show
-    
+    @enterprise = Enterprise.find_by_id params[:id]
   end
 
   # def create

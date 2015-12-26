@@ -1,1 +1,17 @@
-<h2>enterprises#show</h2>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+
+      <article class="enterprisespan8">
+        <h2>
+          <%= link_to @enterprise.name, enterprise_path(@enterprise.id) %>
+        </h2>
+        <hr>
+        <%= link_to image_tag(@enterprise.picture_url, size: '200', class: "img-responsive",) %>
+        <%= @enterprise.description %>
+      </article>
+      <br/><br/><br/>
+    </div>
+    <%= render partial: 'details_sidebar' %>
+  </div>
+</div>
