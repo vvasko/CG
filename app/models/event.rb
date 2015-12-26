@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
   validate :final_date_must_be_after_start_date
   validate :date_must_be_in_future, on: :create
 
+  self.per_page = 5
+
   scope :order_by_post_date, ->{order(created_at: :desc)}
   scope :actual, -> {where('final_date >= ?', Date.today)}
   scope :start_date_filter, ->(filter_start_date) { where('start_date <= ?', filter_start_date).where('final_date >= ?', filter_start_date)}

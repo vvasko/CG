@@ -1,6 +1,6 @@
 class EnterprisesController < ApplicationController
   def index
-    @enterprises = Enterprise.all
+    @enterprises = Enterprise.all.paginate(:page => params[:page])
   end
 
   def show

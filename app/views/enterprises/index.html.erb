@@ -10,4 +10,5 @@
     </div>
     <%= render partial: 'sidebar' %>
   </div>
+  <div class="text-center"><%= will_paginate @enterprises, renderer: BootstrapPagination::Rails %></div>
 </div>

@@ -3,9 +3,9 @@ class VacanciesController < ApplicationController
 
   def index
     if params[:cat].present?
-      @vacancies = Vacancy.where(:job_category_id => params[:cat])
+      @vacancies = Vacancy.where(:job_category_id => params[:cat]).paginate(:page => params[:page])
     else
-      @vacancies = Vacancy.all
+      @vacancies = Vacancy.all.paginate(:page => params[:page])
     end
     @categories = JobCategory.all
   end
