@@ -4,9 +4,6 @@
       <% @enterprises.each do |enterprise| %>
           <%= render partial: 'enterprise', locals: {enterprise: enterprise} %>
       <% end %>
-<div>
-      <%= will_paginate @enterprises,renderer: BootstrapPagination::Rails  %>
-      </div>
     </div>
     <%= render partial: 'sidebar' %>
   </div>
