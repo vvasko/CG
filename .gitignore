@@ -16,5 +16,6 @@
 /.idea/*
 /db/schema.rb
 /config/database.yml
+database.yml
 /public/uploads
 Gemfile.lock
