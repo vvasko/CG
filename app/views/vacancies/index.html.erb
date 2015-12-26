@@ -3,7 +3,6 @@
     <small><%= action_name %></small>
   </h1>
 </div>
-
 <div class="body_panel panel-default">
   <div class="panel-body">
     <div class="row">
@@ -20,9 +19,9 @@
         <% unless @categories.blank? %>
             <div class="list-group">
               <% @categories.each do |category| %>
-                  <%= link_to category.name, vacancies_path(:cat => category.id), class: "list-group-item" %>
+                  <%= link_to "#{category.name}<span class=\"badge\">#{category.vacancies.size}</span>".html_safe, vacancies_path(:cat => category.id), class: "list-group-item" %>
               <% end %>
-              <%= link_to 'All', vacancies_path, class: "list-group-item" %>
+              <%= link_to "All<span class=\"badge\">#{Vacancy.all.size}</span>".html_safe, vacancies_path, class: "list-group-item" %>
             </div>
         <% else %>
             <div>Categories are empty</div>
@@ -30,5 +29,6 @@
       </div>
     </div>
   </div>
+  <div class="text-center"><%= will_paginate @vacancies, renderer: BootstrapPagination::Rails %></div>
 </div>
 

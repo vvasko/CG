@@ -5,14 +5,21 @@
         <%= link_to image_tag(item.enterprise.picture_url, size: '250', class: "img-thumbnail"), item.enterprise %>
       </div>
       <div class="col-md-8">
-        <h3><%= item.name %></h3>
-        <p><%= link_to item.enterprise.name, item.enterprise %></p>
-        <p class="vacancy-actual-date">actual: <%= item.open_date %> - <%= item.close_date %></p>
-        <p>phone: <%= item.enterprise.phone %></p>
-        <p>email: <%= item.enterprise.email %></p>
-        <div class="vacancy-description"><%= item.description %></div>
+        <div class="well">
+            <h3><%= link_to item.name, item %></h3>
+            <p><%= actual_date(item.open_date, item.close_date, item.expired? ? 'default' : 'success') %></p>
+            <p><%= link_to item.enterprise.name, item.enterprise %></p>
+            <%= "<p>phone: #{item.enterprise.phone}</p>".html_safe unless item.enterprise.phone.blank? %>
+            <%= "<p>email: #{item.enterprise.email}</p>".html_safe unless item.enterprise.email.blank? %>
+        </div>
       </div>
     </div>
+    <% unless item.description.empty? %>
+        <div class="well">
+          <%= truncate(item.description, :length => 300) %>
+          <%= link_to 'Read more', item %>
+        </div>
+    <% end %>
   </div>
 </div>
 

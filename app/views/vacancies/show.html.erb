@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1><%= controller_name.humanize %>
+    <small><%= action_name %></small>
+  </h1>
+</div>
+
+<div class="body_panel panel-default">
+  <div class="panel-body">
+    <%= link_to image_tag(@vacancy.enterprise.picture_url, align: 'left', :size => '250', style: 'margin-right: 15px;'), @vacancy.enterprise %>
+    <div class="">
+        <h3><%= @vacancy.name %></h3>
+        <p><%= actual_date(@vacancy.open_date, @vacancy.close_date, @vacancy.expired? ? 'default' : 'success') %></p>
+        <p><%= link_to @vacancy.enterprise.name, @vacancy.enterprise %></p>
+        <%= "<p>phone: #{@vacancy.enterprise.phone}</p>".html_safe unless @vacancy.enterprise.phone.blank? %>
+        <%= "<p>email: #{@vacancy.enterprise.email}</p>".html_safe unless @vacancy.enterprise.email.blank? %>
+        <p><%= @vacancy.description %></p>
+    </div>
+    <%= file_field :picture, multiple: false %>
+  </div>
+</div>
