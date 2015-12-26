@@ -12,6 +12,8 @@ class Promo < ActiveRecord::Base
 
   validate :correct_period
 
+  self.per_page = 5
+
   def correct_period
     if starts > ends
       errors.add(:period, 'is not correct: "Starts" date must be lower, or equal "Ends" date')
