@@ -141,9 +141,10 @@ form {
   }
 }
 
-
-.navbar-nav > li:last-of-type {
-  float: right
+@media (min-width: 768px){
+  .navbar-nav > li:last-of-type {
+    float: right
+  }
 }
 
 .navbar-nav {
