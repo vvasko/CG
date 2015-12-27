@@ -7,11 +7,11 @@ SimpleNavigation::Configuration.run do |navigation|
     navigation.selected_class = 'active'
     navigation.items do |primary|
       primary.dom_class = 'nav navbar-nav'
-      primary.item :menu_home, 'Home', root_path
-      primary.item :menu_enterprises, 'Enterprises', enterprises_path, highlights_on: :subpath
+      # primary.item :menu_home, 'Home', root_path
       primary.item :menu_promos, 'Promos', promos_path,  highlights_on: :subpath
       primary.item :menu_events, 'Events', events_path,  highlights_on: :subpath
       primary.item :menu_vacancies, 'Vacancies', vacancies_path,  highlights_on: :subpath
+      primary.item :menu_enterprises, 'Enterprises', enterprises_path, highlights_on: :subpath
       primary.item :menu_login, 'Enterprise Admin',  new_user_session_path, unless: proc { user_signed_in? }
       primary.item :menu_logout, 'Enterprise Admin', admin_path,  if: proc { user_signed_in? }
 
