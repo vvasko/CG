@@ -5,12 +5,14 @@ class Promo < ActiveRecord::Base
   mount_uploader :image, PromoImageUploader
 
   validates :name, :starts, :ends, presence: true, allow_blank: false
+  validates :name, length: { in: 2...200 }
   validate :start_check, on: :create
-
 
   validate :fix_enterprise
 
   validate :correct_period
+
+  scope :with_includes, -> { includes(:enterprise)}
 
   self.per_page = 5
 
