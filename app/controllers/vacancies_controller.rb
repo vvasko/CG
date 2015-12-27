@@ -3,14 +3,18 @@ class VacanciesController < ApplicationController
 
   def index
     if params[:cat].present?
-      @vacancies = Vacancy.where(:job_category_id => params[:cat]).paginate(:page => params[:page])
+      @vacancies = Vacancy.where(:job_category_id => params[:cat]).order(:created_at => :desc).paginate(:page => params[:page])
     else
-      @vacancies = Vacancy.all.paginate(:page => params[:page])
+      @vacancies = Vacancy.order(:created_at => :desc).paginate(:page => params[:page])
     end
     @categories = JobCategory.all
   end
 
   def show
+
+  end
+
+  def send_cv
 
   end
 

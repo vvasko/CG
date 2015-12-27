@@ -17,8 +17,3 @@
 //= require turbolinks
 //= require ajax_pagination
 //= require_tree .
-$(document).ready(function(){
-    $(":file").filestyle({
-        buttonName: "btn-primary"
-    });
-});
