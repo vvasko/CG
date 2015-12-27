@@ -6,15 +6,57 @@
 
 <div class="body_panel panel-default">
   <div class="panel-body">
-    <%= link_to image_tag(@vacancy.enterprise.picture_url, align: 'left', :size => '250', style: 'margin-right: 15px;'), @vacancy.enterprise %>
-    <div class="">
-        <h3><%= @vacancy.name %></h3>
-        <p><%= actual_date(@vacancy.open_date, @vacancy.close_date, @vacancy.expired? ? 'default' : 'success') %></p>
-        <p><%= link_to @vacancy.enterprise.name, @vacancy.enterprise %></p>
-        <%= "<p>phone: #{@vacancy.enterprise.phone}</p>".html_safe unless @vacancy.enterprise.phone.blank? %>
-        <%= "<p>email: #{@vacancy.enterprise.email}</p>".html_safe unless @vacancy.enterprise.email.blank? %>
-        <p><%= @vacancy.description %></p>
+    <div class="row">
+        <div class="col col-md-4 col-lg-3">
+            <div class="well">
+                <%= link_to image_tag(@vacancy.enterprise.picture_url, :class => 'img-thumbnail', :size => '250'), @vacancy.enterprise %>
+            </div>
+        </div>
+        <div class="col col-md-8 col-lg-9">
+            <div class="well">
+                <%= print_alert 'danger', "This vacancy is no longer actual. Expired on #{@vacancy.close_date}" if @vacancy.expired? %>
+                <h3><%= @vacancy.name %></h3>
+                <ul class="list-group">
+                    <li class="list-group-item">Expiration: <%= print_date(@vacancy.open_date, @vacancy.close_date, @vacancy.expired? ? 'default' : 'success') %></li>
+                    <li class="list-group-item">Company: <%= link_to @vacancy.enterprise.name, @vacancy.enterprise %></li>
+                    <%= "<li class=\"list-group-item\">Category: #{@vacancy.job_category.name}</li>".html_safe unless @vacancy.job_category.blank? %>
+                    <%= "<li class=\"list-group-item\">Phone: #{@vacancy.enterprise.phone}</li>".html_safe unless @vacancy.enterprise.phone.blank? %>
+                    <%= "<li class=\"list-group-item\">Email: #{@vacancy.enterprise.email}</li>".html_safe unless @vacancy.enterprise.email.blank? %>
+                    <%= "<li class=\"list-group-item\">Job type: #{@vacancy.job_type.name}</li>".html_safe unless @vacancy.job_type.blank? %>
+                    <%= "<li class=\"list-group-item\">Salary: #{@vacancy.salary} #{@vacancy.currency.name}</p>".html_safe unless @vacancy.salary.blank? %>
+                    <%= "<li class=\"list-group-item\">Location: #{@vacancy.location}</li>".html_safe unless @vacancy.location.blank? %>
+                    <%= "<li class=\"list-group-item\">Education: #{@vacancy.education}</li>".html_safe unless @vacancy.education.blank? %>
+                </ul>
+            </div>
+        </div>
     </div>
-    <%= file_field :picture, multiple: false %>
+    <% unless @vacancy.description.blank?  %>
+        <div class="row">
+            <div class="col col-md-12">
+                <div class="well"><%= @vacancy.description %></div>
+            </div>
+        </div>
+    <% end %>
+    <div class="row">
+        <div class="col col-md-6 col-md-offset-4">
+            <div class="well">
+                <%= form_tag("/send_resume", method: "get") do %>
+                  <div class="form-group">
+                    <%= label_tag :name %>
+                    <%= text_field_tag :name, '', {class:'form-control', placeholder: 'Enter your name'} %>
+                  </div>
+                  <div class="form-group">
+                    <%= label_tag :email %>
+                    <%= email_field_tag :email, '', {class:'form-control', placeholder: 'Enter your email'} %>
+                  </div>
+                  <div class="form-group">
+                    <%= label_tag :resume %>
+                    <%= file_field :resume, multiple: false %>
+                  </div>
+                  <%= submit_tag 'Send resume' %>
+                <% end %>
+            </div>
+        </div>
+    </div>
   </div>
 </div>

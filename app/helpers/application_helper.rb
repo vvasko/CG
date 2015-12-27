@@ -56,4 +56,7 @@ module ApplicationHelper
     "<div class='page-header'><h1>#{title}<small>#{subtitle}</small></h1></div>".html_safe
   end
 
+  def print_alert alert_type, message
+    "<p class=\"alert alert-#{alert_type}\">#{message}</p>".html_safe
+  end
 end

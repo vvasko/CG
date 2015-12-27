@@ -19,9 +19,9 @@
         <% unless @categories.blank? %>
             <div class="list-group">
               <% @categories.each do |category| %>
-                  <%= link_to "#{category.name}<span class=\"badge\">#{category.vacancies.size}</span>".html_safe, vacancies_path(:cat => category.id), class: "list-group-item" %>
+                  <%= link_to "#{category.name}<span class=\"badge\">#{category.vacancies.size}</span>".html_safe, vacancies_path(:cat => category.id), class: "list-group-item#{category.id == params[:cat].to_i ? ' active' : ''}" %>
               <% end %>
-              <%= link_to "All<span class=\"badge\">#{Vacancy.all.size}</span>".html_safe, vacancies_path, class: "list-group-item" %>
+              <%= link_to "All<span class=\"badge\">#{Vacancy.all.size}</span>".html_safe, vacancies_path, class: "list-group-item#{!params[:cat].present? ? ' active' : ''}" %>
             </div>
         <% else %>
             <div>Categories are empty</div>
