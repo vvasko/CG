@@ -61,7 +61,7 @@ select {
 }
 
 label {
-  @extend .col-sm-2;
+  /*@extend .col-sm-2;*/ //Sets all labels width to 16.666%
   @extend .control-label;
 }
 

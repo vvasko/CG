@@ -2,15 +2,19 @@
   <div class="panel-body">
     <div class="row">
       <div class="col-md-4">
-        <%= link_to image_tag(item.enterprise.picture_url, size: '250', class: "img-thumbnail"), item.enterprise %>
+        <div class="well well-sm">
+            <%= link_to image_tag(item.enterprise.picture_url, size: '250', class: "img-thumbnail"), item.enterprise %>
+        </div>
       </div>
       <div class="col-md-8">
         <div class="well">
+            <%= print_alert 'danger', "This job is no longer actual. Expired on #{item.close_date}" if item.expired? %>
             <h3><%= link_to item.name, item %></h3>
-            <p><%= actual_date(item.open_date, item.close_date, item.expired? ? 'default' : 'success') %></p>
-            <p><%= link_to item.enterprise.name, item.enterprise %></p>
-            <%= "<p>phone: #{item.enterprise.phone}</p>".html_safe unless item.enterprise.phone.blank? %>
-            <%= "<p>email: #{item.enterprise.email}</p>".html_safe unless item.enterprise.email.blank? %>
+            <p>Expiration: <%= print_date(item.open_date, item.close_date, item.expired? ? 'default' : 'success') %></p>
+            <p>Company: <%= link_to item.enterprise.name, item.enterprise %></p>
+            <%= "<p>Phone: #{item.enterprise.phone}</p>".html_safe unless item.enterprise.phone.blank? %>
+            <%= "<p>Email: #{item.enterprise.email}</p>".html_safe unless item.enterprise.email.blank? %>
+            <%= "<p>Salary: #{item.salary}</p>".html_safe unless item.salary.blank? %>
         </div>
       </div>
     </div>

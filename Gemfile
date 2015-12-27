@@ -36,6 +36,8 @@ gem 'simple-navigation-bootstrap'
 gem 'ajax_pagination'
 gem 'jquery-historyjs'
 
+gem 'bootstrap-filestyle-rails'
+
 gem 'will_paginate'
 gem 'will_paginate-bootstrap'
 
