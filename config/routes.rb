@@ -4,7 +4,6 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin' 
   end
 
-
   devise_for :users
   root 'promos#index'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -20,7 +19,12 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-     resources :enterprises, :events, :promos, :vacancies
+  resources :enterprises, :events, :promos
+  resources :vacancies do
+    member do
+      post 'send_cv'
+    end
+  end
 
   # Example resource route with options:
   #   resources :products do
