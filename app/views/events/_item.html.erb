@@ -1,0 +1,45 @@
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="well well-sm text-center">
+          <%= image_tag(item.image_url, size: '250', class: "img-thumbnail") %>
+          <br>
+          <br>
+          <p><%=t 'duration'  %>: <%= print_date(item.start_date, item.final_date, 'success') %></p>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <div class="well">
+            <h3><%= link_to item.name, item %></h3>
+            <p><%=t 'enterprise' %>: <%= link_to item.enterprise.name, item.enterprise %></p>
+          <% unless item.location.blank?  %>
+              <p><%=t 'location' %>: <%= item.location %></p>
+          <% end %>
+          <%unless item.price.blank?  %>
+          <p><%=t 'price'  %>: <%= item.price  %> <%=t :currency_main %>    </p>
+          <%end%>
+          <%unless item.event_times.blank?  %>
+          <p> <%=t 'times'  %>:</p>
+
+          <div class="well">
+            <% item.event_times.each do |event_time| %>
+                <%= show_time(event_time)%>
+            <% end %>
+            <br>
+          </div>
+          <%end%>
+        </div>
+      </div>
+    </div>
+    <% unless item.description.empty? %>
+        <h4><%=t 'description' %>:</h4>
+        <div class="well">
+          <%= truncate(item.description, :length => 300) %>
+          <%= link_to 'Read more', item %>
+        </div>
+    <% end %>
+  </div>
+</div>
+
+

@@ -1,74 +1,30 @@
 <div class="page-header">
-  <h1><%= controller_name.humanize %>
-    <% if @events.blank? %>
-        <small> None to show yet</small>
-    <% end %>
+  <h1><%=t "#{controller_name}" %>
+
     <div class="btn-group right" role="group">
-      <%= link_to 'today', events_path(filter_start_date: Date.today) %>
-      <%= link_to 'tomorrow', events_path(filter_start_date: (Date.today+1.day)) %>
-      <%= link_to 'all week', events_path(filter_start_date: Date.today, filter_end_date: (Date.today+7.days)) %>
-      <%= link_to 'all time', events_path %>
+      <%= link_to (t 'link_text.today'), events_path(filter_start_date: Date.today) %>
+      <%= link_to (t 'link_text.tomorrow'), events_path(filter_start_date: (Date.today+1.day)) %>
+      <%= link_to (t 'link_text.all week'), events_path(filter_start_date: Date.today, filter_end_date: (Date.today+7.days)) %>
+      <%= link_to (t 'link_text.all time'), events_path %>
     </div>
   </h1>
 </div>
 
-
 <div class="body_panel panel-default">
   <div class="panel-body">
-    <% unless @events.blank?%>
-    <% @events.each do |event| %>
-        <div class="col-md-4">
-          <div class="panel panel-default text-center">
+    
 
-            <div class="panel-body"><%= image_tag(event.image_url, size: '250', class: "img-thumbnail") %> </div>
+        <% unless @events.blank? %>
+            <% @events.each do |event| %>
+                <%= render "item", {item: event} %>
+      <% end %>
+      <% else %>
+            <div><%=t 'none_to_show_yet'  %></div>
+      <% end %>
 
-            <div class="panel-footer"><p>Duration: <%= event.duration %></p></div>
-          </div>
-        </div>
 
-
-        <div class="col-md-8">
-          <div class="panel panel-default">
-            <div class="panel-heading text-center">
-              <h2><%= link_to "#{event.name}", event_path(event.id) %></h2>
-
-            </div>
-            <div class="panel-body list-group">
-
-              <li class="list-group-item">
-                <h4><%= link_to "#{event.enterprise.name}", enterprise_path(event.enterprise_id) %></h4></li>
-              <li class="list-group-item">
-               <h4>Description:</h4>
-                <div class="well"><%= truncate(event.description,length: 500, separator: '') %></div>
-              </li>
-
-              <% unless event.location.blank?  %>
-              <li class="list-group-item"><p>Location: <%= event.location %></p></li>
-              <% end %>
-              <% unless event.price.blank?  %>
-              <li class="list-group-item"><p>Price: <%= event.price %> bucks</p></li>
-              <% end %>
-
-              <% unless event.event_times.blank?  %>
-              <li class="list-group-item">
-
-                <p> Times:</p>
-
-                  <div class="well">
-                    <% event.event_times.each do |event_time| %>
-                        <%= show_time(event_time)%>
-                    <% end %>
-                    <br>
-                  </div>
-              </li>
-              <% end %>
-
-            </div>
-          </div>
-        </div>
-    <% end %>
-    <% end %>
-    <div class="text-center"><%= will_paginate @events, renderer: BootstrapPagination::Rails %></div>
   </div>
+  <div class="text-center"><%= will_paginate @events, renderer: BootstrapPagination::Rails %></div>
 </div>
+
 

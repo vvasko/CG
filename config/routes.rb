@@ -4,9 +4,8 @@ Rails.application.routes.draw do
     mount RailsAdmin::Engine => '/admin', as: 'rails_admin' 
   end
 
-
+  get '/:locale' => 'promos#index'
   devise_for :users
-  root 'promos#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -20,7 +19,10 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
-     resources :enterprises, :events, :promos, :vacancies
+  scope "(:locale)", locale: /en|ru|uk/ do
+    root 'promos#index'
+    resources :enterprises, :events, :promos, :vacancies
+  end
 
   # Example resource route with options:
   #   resources :products do
