@@ -19,9 +19,15 @@ Rails.application.routes.draw do
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
+
   scope "(:locale)", locale: /en|ru|uk/ do
     root 'promos#index'
-    resources :enterprises, :events, :promos, :vacancies
+    resources :enterprises, :events, :promos
+    resources :vacancies do
+      member do
+        post 'send_cv'
+      end
+    end
   end
 
   # Example resource route with options:

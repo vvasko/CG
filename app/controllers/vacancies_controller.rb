@@ -1,5 +1,6 @@
 class VacanciesController < ApplicationController
-  before_action :find_item, only: [:show]
+  before_action :find_item, only: [:show, :send_cv]
+  include DataFile
 
   def index
     if params[:cat].present?
@@ -10,15 +11,17 @@ class VacanciesController < ApplicationController
     @categories = JobCategory.all
   end
 
-  def show
-
-  end
-
   def send_cv
-
+    unless (params[:attachment]).nil?
+      uploaded_io = params[:attachment]
+      path = Rails.root.join('tmp', 'uploads');
+      DataFile.save_file uploaded_io, path
+      #DataFile.remove_last_folder
+    end
+    flash['success'] = "Thank you for your resume. We will contact you ASAP."
+    redirect_to action: :show
   end
 
-  private
   def find_item
     @vacancy = Vacancy.find(params[:id])
   end

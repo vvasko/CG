@@ -43,7 +43,7 @@
         <div class="well">
           <h3>Your resume:</h3>
           <h5>If you are interested in this position, please send us your CV (in format <b>pdf, doc, docx</b>) and we will contact you ASAP</h5>
-          <%= form_tag("/send_resume", method: "get") do %>
+          <%= form_tag(send_cv_vacancy_path, :multipart => true, :method => 'post') do %>
               <div class="form-group no-margins">
                 <%= label_tag :name %>
                 <%= text_field_tag :name, '', {class: 'form-control', placeholder: 'Enter your name'} %>
@@ -53,8 +53,8 @@
                 <%= email_field_tag :email, '', {class: 'form-control', placeholder: 'Enter your email'} %>
               </div>
               <div class="form-group no-margins">
-                <%= label_tag :resume %>
-                <%= file_field :resume, multiple: false %>
+                <%= label_tag :attachment %>
+                <%= file_field_tag :attachment, multiple: false %>
               </div>
               <%= submit_tag 'Send resume' %>
           <% end %>
