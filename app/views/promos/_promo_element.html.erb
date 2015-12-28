@@ -1,15 +1,19 @@
-<div class="body_panel panel-default">
-  <div class="panel-body">
-    <div class="col-md-4">
-
-      <p><%= image_tag(promo.image_url, size: '250', class: "img-thumbnail") %> </p>
-
-    </div>
-    <div></div>
-    <div>Promo: <%= link_to promo.name, promo_path(promo.id) %></div>
-    <div>Starts: <span><%= promo.starts %></span> Ends: <span><%= promo.ends %></span></div>
-    <div><%= %></div>
-    <div>Carried by: <%= link_to promo.enterprise.name, enterprise_path(promo.enterprise.id) %></div>
-    <div>Description: <%= promo.description %></div>
-  </div>
+<article class="enterprisespan8">
+  <h2>
+    <%= link_to promo.name, promo_path(promo.id) %>
+  </h2>
+  <hr>
+  <%= image_tag(promo.image_url, size: '200', class: "img-responsive",) %>
+  <div>Starts: <span><%= promo.starts %></span> Ends: <span><%= promo.ends %></span></div>
+  <div>Carried by: <%= link_to promo.enterprise.name, enterprise_path(promo.enterprise.id) %></div>
+  <% unless promo.description.empty? %>
+    <%= truncate(promo.description, :length => 650)%>
+  <% end %>
+</article>
+<div class="rmore">
+  <%= link_to  promo_path(promo.id), { :class=>"btn btn-primary", :role=>"button" } do %>
+      Read More <span class="glyphicon glyphicon-chevron-right"></span>
+  <% end %>
 </div>
+<hr>
+<br/>

@@ -32,6 +32,14 @@ RailsAdmin.config do |config|
     visible false
   end
 
+  config.model JobCategory do
+    visible false
+  end
+
+  config.model JobType do
+    visible false
+  end
+
   config.model Enterprise do
 
     edit do

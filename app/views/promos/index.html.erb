@@ -1,6 +1,10 @@
-
-    <% @promos.each do |item| %>
-        <%= render partial: 'promo_element', locals: {promo: item} %>
-    <% end %>
-    <div class="text-center"><%= will_paginate @promos, renderer: BootstrapPagination::Rails %></div>
-<!--</div>-->
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <% @promos.each do |item| %>
+          <%= render partial: 'promo_element', locals: {promo: item} %>
+      <% end %>
+    </div>
+  </div>
+  <div class="text-center"><%= will_paginate @promos, renderer: BootstrapPagination::Rails %></div>
+</div>
