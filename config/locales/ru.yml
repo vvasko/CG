@@ -21,11 +21,13 @@
 
 ru:
   hello: "Таки здгавствуйте!"
+  company: "предприятие"
   currency_main: "рублей"
   description: "описание"
   duration: "длительность"
   enterprise: "предприятие"
   events: "события"
+  expiration: "актуальность"
   link_text:
      today: "Сегодня"
      tomorrow: "Завтра"
@@ -33,7 +35,10 @@ ru:
      all time: "За всё время"
   location: "место"
   none_to_show_yet: "нечего отобразить"
+  phone: "телефон"
   price: "цена"
+  read more: "подробнее"
+  salary: "оклад"
   times: "время"
 
 # =================== ACTIVE RECORD BLOCK ===============================

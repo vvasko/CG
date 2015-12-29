@@ -21,15 +21,20 @@
 
 uk:
   hello: "Здоровенькі були"
+  company: "підприємство"
   currency_main: "гривень"
   description: "опис"
   duration: "тривалість"
   enterprise: "підприємство"
   events: "події"
+  expiration: "актуальність"
   location: "місце"
   none_to_show_yet: "нічого відобразити"
+  phone: "телефон"
   price: "ціна"
+  read more: "детальніше"
   times: "час"
+  salary: "оклад"
   link_text:
        today: "Сьогодні"
        tomorrow: "Завтра"

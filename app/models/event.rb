@@ -6,7 +6,7 @@ class Event < ActiveRecord::Base
   belongs_to :enterprise
   validates :name,:enterprise_id, :description, :start_date, :final_date, presence: true, allow_blank: false
   validates :name, length: { in: 2...200 }
-  validates :enterprise_id, numericality: { only_integer: true }
+  validates :enterprise_id, :price, numericality: { only_integer: true }
   validate :final_date_must_be_after_start_date
   validate :date_must_be_in_future, on: :create
 
