@@ -8,11 +8,12 @@
       </div>
       <div class="col-md-8">
         <div class="well">
-            <%= print_alert 'danger', "This job is no longer actual. Expired on #{item.close_date}" if item.expired? %>
+            <%= print_alert 'danger', "#{t 'This job is no longer actual'}. #{t 'Expired on'} #{item.close_date}" if item.expired? %>
             <h3><%= link_to item.name, item %></h3>
             <p><%=t 'expiration' %>: <%= print_date(item.open_date, item.close_date, item.expired? ? 'default' : 'success') %></p>
             <p><%=t 'company' %>: <%= link_to item.enterprise.name, item.enterprise %></p>
             <%= "<p>#{t 'phone'}: #{item.enterprise.phone}</p>".html_safe unless item.enterprise.phone.blank? %>
+            <%= "<p>#{t 'job type'}: #{t item.job_type.name.to_s}</p>".html_safe unless item.job_type.blank? %>
             <%= "<p>email: #{item.enterprise.email}</p>".html_safe unless item.enterprise.email.blank? %>
             <%= "<p>#{t 'salary'}: #{item.salary}</p>".html_safe unless item.salary.blank? %>
         </div>

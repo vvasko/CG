@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= controller_name.humanize %>
+  <h1><%=t controller_name %>
     <small><%= action_name %></small>
   </h1>
 </div>
@@ -14,18 +14,18 @@
       </div>
       <div class="col col-md-8 col-lg-9">
         <div class="well">
-          <%= print_alert 'danger', "This vacancy is no longer actual. Expired on #{@vacancy.close_date}" if @vacancy.expired? %>
+          <%= print_alert 'danger', "#{t 'This job is no longer actual'}. #{t 'Expired on'} #{@vacancy.close_date}" if @vacancy.expired? %>
           <h3><%= @vacancy.name %></h3>
           <ul class="list-group">
-            <li class="list-group-item">Expiration: <%= print_date(@vacancy.open_date, @vacancy.close_date, @vacancy.expired? ? 'default' : 'success') %></li>
-            <li class="list-group-item">Company: <%= link_to @vacancy.enterprise.name, @vacancy.enterprise %></li>
-            <%= "<li class=\"list-group-item\">Category: #{@vacancy.job_category.name}</li>".html_safe unless @vacancy.job_category.blank? %>
-            <%= "<li class=\"list-group-item\">Phone: #{@vacancy.enterprise.phone}</li>".html_safe unless @vacancy.enterprise.phone.blank? %>
+            <li class="list-group-item"><%= t 'expiration' %>: <%= print_date(@vacancy.open_date, @vacancy.close_date, @vacancy.expired? ? 'default' : 'success') %></li>
+            <li class="list-group-item"><%= t 'company' %>: <%= link_to @vacancy.enterprise.name, @vacancy.enterprise %></li>
+            <%= "<li class=\"list-group-item\">#{t 'category'}: #{@vacancy.job_category.name}</li>".html_safe unless @vacancy.job_category.blank? %>
+            <%= "<li class=\"list-group-item\">#{t 'phone'}: #{@vacancy.enterprise.phone}</li>".html_safe unless @vacancy.enterprise.phone.blank? %>
             <%= "<li class=\"list-group-item\">Email: #{@vacancy.enterprise.email}</li>".html_safe unless @vacancy.enterprise.email.blank? %>
-            <%= "<li class=\"list-group-item\">Job type: #{@vacancy.job_type.name}</li>".html_safe unless @vacancy.job_type.blank? %>
-            <%= "<li class=\"list-group-item\">Salary: #{@vacancy.salary} #{@vacancy.currency.name}</p>".html_safe unless @vacancy.salary.blank? %>
-            <%= "<li class=\"list-group-item\">Location: #{@vacancy.location}</li>".html_safe unless @vacancy.location.blank? %>
-            <%= "<li class=\"list-group-item\">Education: #{@vacancy.education}</li>".html_safe unless @vacancy.education.blank? %>
+            <%= "<li class=\"list-group-item\">#{t 'job type'}: #{@vacancy.job_type.name}</li>".html_safe unless @vacancy.job_type.blank? %>
+            <%= "<li class=\"list-group-item\">#{t 'salary'}: #{@vacancy.salary} #{@vacancy.currency.name}</p>".html_safe unless @vacancy.salary.blank? %>
+            <%= "<li class=\"list-group-item\">#{t 'location'}: #{@vacancy.location}</li>".html_safe unless @vacancy.location.blank? %>
+            <%= "<li class=\"list-group-item\">#{t 'education'}: #{@vacancy.education}</li>".html_safe unless @vacancy.education.blank? %>
           </ul>
         </div>
       </div>
@@ -34,7 +34,7 @@
       <div class="col col-md-6">
         <% unless @vacancy.description.blank? %>
             <div class="well">
-              <h3>Job description:</h3>
+              <h3><%= t 'Job description' %>:</h3>
               <%= @vacancy.description %>
             </div>
         <% end %>

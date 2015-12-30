@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1><%= controller_name.humanize %>
+  <h1><%=t "#{controller_name}" %>
     <small><%= action_name %></small>
   </h1>
 </div>
@@ -12,19 +12,19 @@
                 <%= render "item", {item: vacancy} %>
             <% end %>
         <% else %>
-            <div>No vacancies yet</div>
+            <div><%=t "no vacancies yet" %></div>
         <% end %>
       </div>
       <div class="col-md-4">
         <% unless @categories.blank? %>
             <div class="list-group">
               <% @categories.each do |category| %>
-                  <%= link_to "#{category.name}<span class=\"badge\">#{category.vacancies.size}</span>".html_safe, vacancies_path(:cat => category.id), class: "list-group-item#{category.id == params[:cat].to_i ? ' active' : ''}" %>
+                  <%= link_to "#{t category.name.to_s}<span class=\"badge\">#{category.vacancies.size}</span>".html_safe, vacancies_path(:cat => category.id), class: "list-group-item#{category.id == params[:cat].to_i ? ' active' : ''}" %>
               <% end %>
-              <%= link_to "All<span class=\"badge\">#{Vacancy.all.size}</span>".html_safe, vacancies_path, class: "list-group-item#{!params[:cat].present? ? ' active' : ''}" %>
+              <%= link_to "#{t 'All'}<span class=\"badge\">#{Vacancy.all.size}</span>".html_safe, vacancies_path, class: "list-group-item#{!params[:cat].present? ? ' active' : ''}" %>
             </div>
         <% else %>
-            <div>Categories are empty</div>
+            <div><%=t  'categories are empty'%></div>
         <% end %>
       </div>
     </div>
