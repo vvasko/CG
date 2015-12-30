@@ -1,6 +1,7 @@
 class VacanciesController < ApplicationController
   before_action :find_item, only: [:show, :send_cv]
   include DataFile
+  @@resume_white_list = %w(doc docx pdf)
 
   def index
     if params[:cat].present?
@@ -12,14 +13,37 @@ class VacanciesController < ApplicationController
   end
 
   def send_cv
-    unless (params[:attachment]).nil?
-      uploaded_io = params[:attachment]
-      path = Rails.root.join('tmp', 'uploads');
-      DataFile.save_file uploaded_io, path
-      #DataFile.remove_last_folder
+    if validate_resume_form?
+      #send_mail_to_user
+      #send_mail_to_enterprise
     end
-    flash['success'] = "Thank you for your resume. We will contact you ASAP."
     redirect_to action: :show
+  end
+
+  private
+  def validate_resume_form?
+    result = false
+    if validate_resume_params
+      if validate_resume_file params[:attachment]
+        flash['success'] = "Thank you for your resume. We will contact you ASAP."
+        result = true
+      else
+        flash['danger'] = "Your file must be in format \"#{@@resume_white_list.to_sentence(last_word_connector: ' or ')}\""
+      end
+    else
+      flash['danger'] = "Not all required fields are filled."
+    end
+    return result
+  end
+
+  private
+  def validate_resume_file file
+    @@resume_white_list.include? DataFile.get_file_extension file
+  end
+
+  private
+  def validate_resume_params
+    !params[:attachment].nil? && params[:name].present? && params[:email].present?
   end
 
   def find_item
