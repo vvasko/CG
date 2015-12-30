@@ -1,5 +1,5 @@
 <div class="page-header">
-  <h1> Promo </h1>
+  <h1> <%= t 'promo' %> </h1>
 </div>
 
 <div class="body_panel panel-default">
@@ -10,9 +10,9 @@
 
     </div>
     <div><%= @promo.name %></div>
-    <div>Starts: <span><%= @promo.starts %></span> Ends: <span><%= @promo.ends %></span></div>
+    <div><%=t 'starts'  %>: <span><%= @promo.starts %></span> <%=t 'ending' %>: <span><%= @promo.ends %></span></div>
     <div><%= %></div>
-    <div>Carried by: <%= link_to @promo.enterprise.name, enterprise_path(@promo.enterprise.id) %></div>
-    <div>Description: <%= @promo.description %></div>
+    <div><%= t 'carried by' %>: <%= link_to @promo.enterprise.name, enterprise_path(@promo.enterprise.id) %></div>
+    <div><%= t 'description' %>: <%= @promo.description %></div>
   </div>
 </div>

@@ -3,7 +3,7 @@
 
   <%= form_tag(enterprises_path, :method => "get", id: "search-form") do %>
   <div class="well">
-    <h4>Enterprise Search</h4>
+    <h4><%=t 'Enterprise Search' %></h4>
     <div class="input-group">
       <%= text_field_tag :search, params[:search], class: "form-control", placeholder: "Search Enterprises" %>
         <span class="input-group-btn">

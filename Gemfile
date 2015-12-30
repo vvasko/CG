@@ -32,6 +32,7 @@ gem 'rails_admin'
 
 gem 'simple-navigation'
 gem 'simple-navigation-bootstrap'
+gem 'simple_navigation_renderers'
 
 gem 'ajax_pagination'
 gem 'jquery-historyjs'

@@ -8,12 +8,15 @@ SimpleNavigation::Configuration.run do |navigation|
     navigation.items do |primary|
       primary.dom_class = 'nav navbar-nav'
       # primary.item :menu_home, 'Home', root_path
-      primary.item :menu_promos, 'Promos', promos_path,  highlights_on: :subpath
-      primary.item :menu_events, 'Events', events_path,  highlights_on: :subpath
-      primary.item :menu_vacancies, 'Vacancies', vacancies_path,  highlights_on: :subpath
-      primary.item :menu_enterprises, 'Enterprises', enterprises_path, highlights_on: :subpath
-      primary.item :menu_login, 'Enterprise Admin',  new_user_session_path, unless: proc { user_signed_in? }
-      primary.item :menu_logout, 'Enterprise Admin', admin_path,  if: proc { user_signed_in? }
+      primary.item :menu_promos, (t 'promos'), promos_path,  highlights_on: :subpath
+      primary.item :menu_events, (t 'events'), events_path,  highlights_on: :subpath
+      primary.item :menu_vacancies, (t 'vacancies'), vacancies_path,  highlights_on: :subpath
+      primary.item :menu_enterprises, (t 'enterprises'), enterprises_path, highlights_on: :subpath
+      primary.item :english, 'english', url_for( :locale => 'en' )
+      primary.item :russian, 'русский', url_for( :locale => 'ru' )
+      primary.item :ukrainian, 'українська', url_for( :locale => 'uk' )
+      primary.item :menu_login, (t 'Enterprise Admin'),  new_user_session_path, unless: proc { user_signed_in? }
+      primary.item :menu_logout, (t 'Enterprise Admin'), admin_path,  if: proc { user_signed_in? }
 
     end
   # Specify a custom renderer if needed.

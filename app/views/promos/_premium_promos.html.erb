@@ -1,0 +1,21 @@
+<% i = 0 %>
+<% enum = 3 %>
+<div class="container">
+  <% while i < enum %>
+      <div class="panel panel-default col-xs-6 col-md-4">
+        <% item = elements[i] %>
+        <% if item.blank? %>
+            <div class="premium_element panel-body">Your Promo can be here!!!</div>
+        <% else %>
+            <div class="premium_element panel-body">
+              <div><%= item.name %></div>
+              <!--<br>-->
+              <%= link_to promo_path(item.id), {:class => "btn btn-primary", :role => "button"} do %>
+                  Read More <span class="glyphicon glyphicon-chevron-right"></span>
+              <% end %>
+            </div>
+        <% end %>
+        <% i += 1 %>
+      </div>
+  <% end %>
+</div>

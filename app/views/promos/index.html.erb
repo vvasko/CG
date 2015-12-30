@@ -1,3 +1,4 @@
+<%= render partial: 'premium_promos', locals: {elements: @top_premium} %>
 <div class="container">
   <div class="row">
     <div class="col-md-8">
@@ -8,3 +9,4 @@
   </div>
   <div class="text-center"><%= will_paginate @promos, renderer: BootstrapPagination::Rails %></div>
 </div>
+<%= render partial: 'premium_promos', locals: {elements: @bottom_premium} %>
