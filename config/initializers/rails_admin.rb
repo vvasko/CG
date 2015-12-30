@@ -54,6 +54,19 @@ RailsAdmin.config do |config|
        configure :user do
          visible false
        end
+
+       configure :promos  do
+         visible false
+       end
+
+      configure :events  do
+        visible false
+      end
+
+      configure :vacancies  do
+        visible false
+      end
+
     end
 
 
